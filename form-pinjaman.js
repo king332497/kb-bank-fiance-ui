@@ -39,17 +39,29 @@ amount?.addEventListener("input", () => {
 
   document.getElementById('loanForm').addEventListener('submit', event => {
     event.preventDefault();
+
     const calc = calculate();
+
+    const amountValue = Number(amount.value);
+
     NovaStorage.setLoan({
-      amount:Number(amount.value),
-      tenor:Number(tenor.value),
-      purpose:purpose.value,
+      amount: amountValue,
+      tenor: Number(tenor.value),
+      purpose: purpose.value,
       annualRate,
-      monthlyInstallment:Math.round(calc.payment),
-      totalPayment:Math.round(calc.total)
+      monthlyInstallment: Math.round(calc.payment),
+      totalPayment: Math.round(calc.total)
     });
+
+    const application = NovaStorage.getApplication() || {};
+
+    NovaStorage.setApplication({
+      ...application,
+      limit: amountValue
+    });
+
     window.location.replace('ringkasan-pengajuan.html');
-  });
+});
 
   document.getElementById('backButton').addEventListener('click', () => history.back());
 })();
