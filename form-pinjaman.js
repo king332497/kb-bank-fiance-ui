@@ -57,10 +57,11 @@ amount?.addEventListener("input", () => {
 
     const application = NovaStorage.getApplication() || {};
 
-    NovaStorage.setApplication({
-      ...application,
-      limit: amountValue
-    });
+    const application = NovaStorage.getApplication() || {};
+
+application.limit = amountValue;
+
+NovaStorage.setApplication(application);
 
    window.location.replace('ringkasan-pengajuan.html');
 
