@@ -81,7 +81,7 @@
   function generateLocalCode() {
     const array = new Uint32Array(1);
     crypto.getRandomValues(array);
-    verificationCode = String(100000 + (array[0] % 900000));
+    verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
 
     // Ditampilkan hanya untuk pengujian frontend karena belum ada layanan SMS/backend.
     if (localCode) localCode.textContent = verificationCode;
@@ -132,7 +132,7 @@
       return;
     }
 
-    if (enteredCode() !== verificationCode) {
+    if (/^\d{6}$/.test(enteredCode)) {
       failedAttempts += 1;
       const remaining = MAX_ATTEMPTS - failedAttempts;
       setMessage(
