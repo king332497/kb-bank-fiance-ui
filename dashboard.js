@@ -48,7 +48,7 @@
   ['welcomeName','profileName','identityName'].forEach(id => setText(id, identity.fullName));
   ['profileNik','identityNik'].forEach(id => setText(id, maskedNik));
   ['profileAvatar','identityAvatar'].forEach(id => setText(id, initials));
-  setText('applicationNumber', application.applicationNumber);
+  setText('bankAccount', application.bankAccount || '');
   setText('progressValue', `${application.progress}%`);
 
   animateNumber($('limitValue'), application.limit, rupiah, 1000);
