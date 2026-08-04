@@ -62,7 +62,10 @@ amount?.addEventListener("input", () => {
       limit: amountValue
     });
 
-    window.location.replace('ringkasan-pengajuan.html');
+   window.location.replace('ringkasan-pengajuan.html');
+
 });
+
+})();
 
  
