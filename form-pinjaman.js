@@ -53,7 +53,7 @@ amount?.addEventListener("input", () => {
       totalPayment: Math.round(calc.total)
     });
 
-    const application = NovaStorage.getApplication() || {};
+   const application = NovaStorage.getApplication() || {};
 const amountValue = Number(amount.value);
 
 console.log("PINJAMAN DIPILIH:", amountValue);
