@@ -44,6 +44,8 @@ amount?.addEventListener("input", () => {
 
     const amountValue = Number(amount.value);
 
+    console.log("PINJAMAN DIPILIH:", amountValue);
+
     NovaStorage.setLoan({
       amount: amountValue,
       tenor: Number(tenor.value),
@@ -53,17 +55,14 @@ amount?.addEventListener("input", () => {
       totalPayment: Math.round(calc.total)
     });
 
-   const application = NovaStorage.getApplication() || {};
-const amountValue = Number(amount.value);
+    const application = NovaStorage.getApplication() || {};
 
-console.log("PINJAMAN DIPILIH:", amountValue);
+    NovaStorage.setApplication({
+      ...application,
+      limit: amountValue
+    });
 
-NovaStorage.setApplication({
-  ...application,
-  limit: amountValue
+    window.location.replace('ringkasan-pengajuan.html');
 });
 
-window.location.replace('ringkasan-pengajuan.html');
-
-  document.getElementById('backButton').addEventListener('click', () => history.back());
-})();
+ 
