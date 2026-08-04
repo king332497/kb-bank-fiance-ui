@@ -54,14 +54,16 @@ amount?.addEventListener("input", () => {
     });
 
     const application = NovaStorage.getApplication() || {};
+const amountValue = Number(amount.value);
 
-    NovaStorage.setApplication({
-      ...application,
-      limit: amountValue
-    });
+console.log("PINJAMAN DIPILIH:", amountValue);
 
-    window.location.replace('ringkasan-pengajuan.html');
+NovaStorage.setApplication({
+  ...application,
+  limit: amountValue
 });
+
+window.location.replace('ringkasan-pengajuan.html');
 
   document.getElementById('backButton').addEventListener('click', () => history.back());
 })();
