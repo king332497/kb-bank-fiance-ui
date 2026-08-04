@@ -14,7 +14,17 @@
     const value = identity.value.trim();
     return value.length >= 3 && (!value.includes('@') || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));
   };
-  const validPassword = () => password.value.length >= 6;
+  const validPassword = () => {
+  const value = password.value;
+
+  return (
+    value.length >= 8 &&          // minimal 8 karakter
+    /[A-Z]/.test(value) &&       // minimal 1 huruf kapital
+    /[a-z]/.test(value) &&       // minimal 1 huruf kecil
+    /[0-9]/.test(value) &&       // minimal 1 angka
+    !/\s/.test(value)            // tidak boleh ada spasi
+  );
+};
 
   function updateButton() {
     const valid = validIdentity() && validPassword();
@@ -38,7 +48,7 @@
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (!validIdentity() || !validPassword()) {
-      message.textContent = 'Lengkapi username/email dan kata sandi minimal 6 karakter.';
+      message.textContent = 'Kata sandi minimal 8 karakter, harus memiliki huruf kapital, huruf kecil, angka, dan tidak boleh menggunakan spasi.';
       message.className = 'message error';
       return;
     }
