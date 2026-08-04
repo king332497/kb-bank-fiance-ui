@@ -5,10 +5,23 @@
   if (!NovaStorage.requireDocuments()) return;
 
   const amount = document.getElementById('amount');
-  const tenor = document.getElementById('tenor');
-  const purpose = document.getElementById('purpose');
-  const monthly = document.getElementById('monthly');
-  const annualRate = 12;
+const tenor = document.getElementById('tenor');
+const purpose = document.getElementById('purpose');
+const monthly = document.getElementById('monthly');
+const annualRate = 12;
+
+
+amount?.addEventListener("input", () => {
+
+    const value = Number(amount.value);
+
+    const application = NovaStorage.getApplication() || {};
+
+    application.limit = value;
+
+    NovaStorage.setApplication(application);
+
+});
 
   const rupiah = value => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(value);
 
