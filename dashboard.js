@@ -51,7 +51,7 @@
   setText('applicationNumber', application.applicationNumber);
   setText('progressValue', `${application.progress}%`);
 
-  animateNumber($('limitValue'), application.limit, rupiah, 1000);
+  animateNumber($('limitValue'), 10000000, rupiah, 1000);
 
   const progressCircle = $('progressCircle');
   if (progressCircle) {
