@@ -49,10 +49,38 @@
   ['profileNik','identityNik'].forEach(id => setText(id, maskedNik));
   ['profileAvatar','identityAvatar'].forEach(id => setText(id, initials));
   setText('bankAccount', application.bankAccount || '');
-  setText('progressValue', `${application.progress}%`);
+  setText('progressValue', `${application.progress || 0}%`);
 
   animateNumber($('limitValue'), application.limit, rupiah, 1000);
+const bankAccount = $('bankAccount');
+const disbursementButton = $('disbursementButton');
+const accountMessage = $('accountMessage');
 
+if (bankAccount) {
+
+    bankAccount.addEventListener('input', function () {
+
+        this.value = this.value.replace(/\D/g, '');
+
+        if (this.value.length > 11) {
+            this.value = this.value.substring(0, 11);
+        }
+
+        const valid = this.value.length === 11;
+
+        if (accountMessage) {
+            accountMessage.textContent = valid
+                ? 'Nomor rekening valid.'
+                : `Masukkan tepat 11 digit nomor rekening (${this.value.length}/11)`;
+        }
+
+        if (disbursementButton) {
+            disbursementButton.disabled = !valid;
+        }
+
+    });
+
+}
   const progressCircle = $('progressCircle');
   if (progressCircle) {
     const radius = Number(progressCircle.getAttribute('r')) || 62;
